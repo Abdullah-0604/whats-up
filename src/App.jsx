@@ -1,23 +1,19 @@
-import { ChatEngine } from 'react-chat-engine';
-
-import ChatFeed from './components/ChatFeed';
+import "./App.css";
 import LoginForm from './components/LoginForm';
-import './App.css';
-
-const projectID = '1b7801d6-8a66-4be4-a442-89219d833dfc';
+import Home from "./components/Home";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import SignUp from "./components/SignupForm";
 
 const App = () => {
-  if (!localStorage.getItem('username')) return <LoginForm />;
+//   if (!localStorage.getItem("username")) return <LoginForm />;
 
   return (
-    <ChatEngine
-      height="100vh"
-      projectID="ed9f42ab-4f77-49ea-865e-70e2b2175b72"
-      userName={localStorage.getItem('username')}
-      userSecret={localStorage.getItem('password')}
-      renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
-      onNewMessage={() => new Audio('https://chat-engine-assets.s3.amazonaws.com/click.mp3').play()}
-    />
+    <Router>
+      <Switch>
+        <Route exact path='/' render={props => !localStorage.getItem("username") ? <LoginForm />:<Home/>}></Route>
+        <Route path='/signup'><SignUp/></Route>
+    </Switch>
+    </Router>
   );
 };
 
