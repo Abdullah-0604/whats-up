@@ -36,7 +36,7 @@ const SignUp = () => {
         }),
       };
       axios.request(reqOptions).then(function (response) {
-        console.log(response.data)
+        // console.log(response.data)
         // console.log(response.data["is_authenticated"]);
         if(response.data["is_authenticated"]){
           toast("successfully created new user.");
