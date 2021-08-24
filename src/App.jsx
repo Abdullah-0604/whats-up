@@ -5,8 +5,6 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SignUp from "./components/SignupForm";
 
 const App = () => {
-//   if (!localStorage.getItem("username")) return <LoginForm />;
-
   return (
     <Router>
       <Switch>

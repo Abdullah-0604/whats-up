@@ -10,7 +10,6 @@ const SignUp = () => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -18,7 +17,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(typeof fname, lname, username, email, password);
+      // console.log(typeof fname, lname, username, email, password);
       let headersList = {
         "PRIVATE-KEY": "ff9fcb69-cbd6-4fc0-80f2-b0851ff8cfd2",
         "Content-Type": "application/json",
@@ -30,7 +29,7 @@ const SignUp = () => {
         headers: headersList,
         data: JSON.stringify({
           username: username,
-          secret: "secret-123-jBj02",
+          secret: password,
           email: email,
           first_name: fname,
           last_name: lname,
@@ -38,7 +37,7 @@ const SignUp = () => {
       };
       axios.request(reqOptions).then(function (response) {
         console.log(response.data)
-        console.log(response.data["is_authenticated"]);
+        // console.log(response.data["is_authenticated"]);
         if(response.data["is_authenticated"]){
           toast("successfully created new user.");
         }
@@ -84,14 +83,6 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="input"
             placeholder="Password"
-            required
-          />
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="input"
-            placeholder="Confirm password"
             required
           />
           <input
